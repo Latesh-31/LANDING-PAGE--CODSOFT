@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breeze Techniques</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="logo">Breeze Techniques</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home">
+        <div>
+            <h1>Welcome to Breeze Techniques</h1>
+            <p>Where air meets innovation</p>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>We are a leading manufacturer of high-quality air compressors, delivering innovative solutions for industrial and commercial applications. With over two decades of experience, our team of expert engineers develops state-of-the-art compression systems that set industry standards.</p>
+        <p>At Breeze Techniques, we combine cutting-edge technology with sustainable practices to create energy-efficient solutions. Our commitment to quality and innovation has made us a trusted partner for businesses worldwide.</p>
+        <p>We specialize in custom-designed systems that meet specific industrial requirements while maintaining optimal performance and reliability.</p>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div id="projects">
+            <div class="project-card">
+                <h3>Project Alpha</h3>
+                <p>Designed and implemented a high-efficiency air compressor system for a manufacturing plant, reducing energy consumption by 20%.</p>
+            </div>
+            <div class="project-card">
+                <h3>Project Beta</h3>
+                <p>Developed a custom air compression solution for a medical facility, ensuring ultra-clean air supply for sensitive equipment.</p>
+            </div>
+            <div class="project-card">
+                <h3>Project Gamma</h3>
+                <p>Engineered a portable air compressor unit for on-site construction, providing reliable power in remote locations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>Email: <a href="mailto:info@breezetechniques.com">info@breezetechniques.com</a></p>
+        <p>Phone: <a href="tel:+1-555-123-4567">+1-555-123-4567</a></p>
+    </section>
+
+    <footer>
+        <p>© 2025 Breeze Techniques | <a href="#home" class="back-to-top">Back to Top</a></p>
+    </footer>
+
+    <script>
+        function easeInOutQuad(t) {
+            return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        }
+
+        function scrollToSmoothly(pos, duration) {
+            const start = window.pageYOffset;
+            const distance = pos - start;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const ease = easeInOutQuad(progress);
+
+                window.scrollTo(0, start + distance * ease);
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        document.querySelectorAll('nav ul li a, .back-to-top').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                const targetPosition = targetElement.offsetTop - 60; 
+                scrollToSmoothly(targetPosition, 1000); 
+            });
+        });
+
+        const projectCards = document.querySelectorAll('.project-card');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        projectCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        const sections = document.querySelectorAll('section, header');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('hidden');
+            } else {
+                backToTop.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
