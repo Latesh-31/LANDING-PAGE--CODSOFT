@@ -24,6 +24,7 @@
   "description": "",
   "devDependencies": {
     "cssnano": "^7.1.0",
+    "cssnano-cli": "^1.0.5",
     "html-minifier-terser": "^7.2.0",
     "prettier": "^3.6.2",
     "stylelint": "^16.22.0",
