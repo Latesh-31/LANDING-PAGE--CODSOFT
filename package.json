@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  ,
-  "lint:css": "stylelint index.css",
-  "format:css": "prettier --write index.css",
-  "format:html": "prettier --write index.html",
-  "minify:css": "cssnano index.css index.min.css",
-  "minify:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o index.min.html index.html"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:css": "stylelint index.css",
+    "format:css": "prettier --write index.css",
+    "format:html": "prettier --write index.html",
+    "minify:css": "cssnano index.css index.min.css",
+    "minify:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true -o index.min.html index.html"
   },
   "repository": {
     "type": "git",
@@ -22,5 +21,12 @@
     "url": "https://github.com/Latesh-31/LANDING-PAGE--CODSOFT/issues"
   },
   "homepage": "https://github.com/Latesh-31/LANDING-PAGE--CODSOFT#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "cssnano": "^7.1.0",
+    "html-minifier-terser": "^7.2.0",
+    "prettier": "^3.6.2",
+    "stylelint": "^16.22.0",
+    "stylelint-config-standard": "^38.0.0"
+  }
 }
